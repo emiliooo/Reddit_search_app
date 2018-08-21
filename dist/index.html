@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Navbar</a>
+        </div>
+    </nav>
+    <div id="seach-container" class="container">
+        <div class="card card-body">
+            <div class="container">
+                <h4>Search Reddit</h4>
+                <form id="search-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search-input" aria-describedby="emailHelp" placeholder="Search"> Sort by:
+                        <div class="form-group form-check-inline">
+                            <input type="radio" class="form-check-input" name="sortBy" value="relevance" checked="">
+                            <label class="form-check-label" for="exampleCheck1">Relevant</label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <input type="radio" class="form-check-input" name="sortBy" value="new">
+                            <label class="form-check-label" for="exampleCheck1">Latest</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">
+                            <h4>Limit</h4>
+                        </label>
+                        <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                            <option selected="">Choose...</option>
+                            <option value="1">25</option>
+                            <option value="2">40</option>
+                            <option value="3">60</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class=" mx-auto btn btn-block btn-primary">Search</button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div id="resulte"></div>
+
+
+    <script src="/Reddit_Search.8927d702.js"></script>
+</body>
+
+</html>
