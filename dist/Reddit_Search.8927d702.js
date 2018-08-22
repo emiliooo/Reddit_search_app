@@ -103,21 +103,85 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"index.js":[function(require,module,exports) {
+})({"redditApi.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    search: function search(searchTerm, searchLimit, sortBy) {
+        return fetch("http://www.reddit.com/search.json?q=" + searchTerm + "&sort=" + sortBy + "&limit=" + searchLimit).then(function (res) {
+            return res.json();
+        }).then(function (data) {
+            return data.data.children.map(function (data) {
+                return data.data;
+            });
+        }).catch(function (err) {
+            return console.log(err);
+        });
+    }
+};
+},{}],"index.js":[function(require,module,exports) {
+'use strict';
+
+var _redditApi = require('./redditApi');
+
+var _redditApi2 = _interopRequireDefault(_redditApi);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var searchForm = document.getElementById('search-form');
 var searchInput = document.getElementById('search-input');
 
 searchForm.addEventListener('submit', function (e) {
-
     var searchTerm = searchInput.value;
-
     var sortBy = document.querySelector('input[name="sortBy"]:checked').value;
+    var searchLimit = document.getElementById('limit').value;
+    if (searchTerm === '') {
+        showMessage('Please add a seach term', 'alert-danger');
+    }
+    searchInput.value = '';
 
-    console.log(sortBy);
+    _redditApi2.default.search(searchTerm, searchLimit, sortBy).then(function (results) {
+        var output = '<div class="card-columns">';
+
+        results.forEach(function (post) {
+            console.log(post);
+
+            var image = post.preview ? post.preview.images[0].source.url : 'https://cdn.vox-cdn.com/thumbor/QPV9DP3CTNEjFQL2uHkFrm_oyIE=/0x0:640x427/920x613/filters:focal(269x163:371x265):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/59028817/reddit_logo_640.0.jpg';
+
+            console.log(post);
+
+            output += '\n            <div class="card" style="width: 18rem;">\n                <img class="card-img-top" src="' + image + '" alt="Card image cap">\n                <div class="card-body">\n                    <h5 class="card-title">' + post.title + '</h5>\n                    <p class="card-text">' + truncateText(post.selftext, 100) + '</p>\n                    <a href="' + post.url + '" class="btn btn-primary">Go somewhere</a>\n                </div>\n            </div>\n            ';
+        });
+        output += '</div>';
+        document.getElementById('results').innerHTML = output;
+    });
 
     e.preventDefault();
 });
-},{}],"..\\..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
+
+function showMessage(msg, className) {
+    var div = document.createElement('div');
+    div.className = 'alert ' + className;
+    div.appendChild(document.createTextNode(msg));
+
+    var searchcontainer = document.getElementById('search-container');
+    var search = document.getElementById('search');
+
+    searchcontainer.insertBefore(div, search);
+    setTimeout(function () {
+        return document.querySelector('.alert-danger').remove();
+    }, 2000);
+}
+
+function truncateText(text, limit) {
+    var short = text.indexOf(' ', limit);
+    if (short === -1) return text;
+    return text.substring(0, short);
+}
+},{"./redditApi":"redditApi.js"}],"..\\..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -146,7 +210,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '52916' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50111' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Findit</a>
         </div>
     </nav>
     <div id="search-container" class="container">
@@ -24,11 +24,11 @@
                     <div class="form-group">
                         <input type="text" class="form-control" id="search-input" aria-describedby="emailHelp" placeholder="Search"> Sort by:
                         <div class="form-group form-check-inline">
-                            <input type="radio" class="form-check-input" name="sortBy" value="relevance" checked >
+                            <input type="radio" class="form-check-input" name="sortBy" value="relevance" checked>
                             <label class="form-check-label" for="exampleCheck1">Relevant</label>
                         </div>
                         <div class="form-group form-check-inline">
-                            <input type="radio" class="form-check-input" name="sortBy" value="new" >
+                            <input type="radio" class="form-check-input" name="sortBy" value="new">
                             <label class="form-check-label" for="exampleCheck1">Latest</label>
                         </div>
                     </div>
@@ -38,24 +38,21 @@
                         </label>
                         <select id="limit" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
                             <option selected>Choose...</option>
-                            <option value="25">25</option>
-                            <option value="40">40</option>
-                            <option value="60">60</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="25" selected>25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
                         </select>
                     </div>
-
                     <button type="submit" class=" mx-auto btn btn-block btn-primary">Search</button>
                 </form>
-
             </div>
-
         </div>
-
+        <div id="results"></div>
     </div>
-    <div id="resulte"></div>
 
-
+    
     <script src="./index.js"></script>
 </body>
-
 </html>
